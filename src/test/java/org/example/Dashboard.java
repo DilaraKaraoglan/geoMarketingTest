@@ -1,3 +1,5 @@
+package org.example;
+
 import com.thoughtworks.gauge.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -7,7 +9,8 @@ import utilities.ConfigReader;
 public class Dashboard {
 
     ConfigReader configReader;
-    static WebDriver driver;
+    WebDriver driver;
+    Login login = new Login();
 
     @Step("Set up configuration for dashboard")
     public void setUpConfig() {
@@ -16,7 +19,7 @@ public class Dashboard {
 
     @Step("Click 'Uygulamayı Başlat' button dashboard")
     public void clickStartAppButton() throws InterruptedException {
-        DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
+        DashboardPage dashboardPage = PageFactory.initElements(login.getDriver(), DashboardPage.class);
         Thread.sleep(3000);
         dashboardPage.clickStartAppButton();
         Thread.sleep(2000);

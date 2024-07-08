@@ -6,8 +6,7 @@
 * Set up configuration
 * Start browser and open URL
 * Login to the website
-* Click 'Uygulamayı Başlat' button
-
+* Click 'Uygulamayı Başlat' button dashboard
 * Click map button
 * Click maps grid
 * Click and hold filter button
