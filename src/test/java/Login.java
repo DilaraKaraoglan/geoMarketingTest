@@ -1,9 +1,7 @@
 import com.thoughtworks.gauge.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pages.DashboardPage;
-import pages.LanguagePage;
-import pages.LoginPage;
+import pages.*;
 import utilities.ConfigReader;
 import utilities.Driver;
 
@@ -65,4 +63,21 @@ public class Login {
         languagePage.clickLanguageButtonSecond();
         Thread.sleep(2000);
     }
+
+    @Step("Click map button")
+    public void clickMapButton() throws InterruptedException {
+        OnboardingPage onboardingPage = PageFactory.initElements(driver, OnboardingPage.class);
+        Thread.sleep(3000);
+        onboardingPage.clickMapButton();
+        Thread.sleep(2000);
+    }
+
+    @Step("Click maps grid")
+    public void clickMapsGrid() throws InterruptedException {
+        MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
+        Thread.sleep(3000);
+        mapPage.clickMapsGrid();
+        Thread.sleep(2000);
+    }
+
 }

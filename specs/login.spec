@@ -11,3 +11,5 @@
 * Change Language to ENG
 * Click 'ENG' button
 * Change Language to TR
+* Click map button
+* Click maps grid
