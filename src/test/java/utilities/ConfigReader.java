@@ -25,6 +25,9 @@ public class ConfigReader {
     public String getUrl() {
         return prop.getProperty("geoVisionUrl");
     }
+    public String getUrlDashborad(){
+        return prop.getProperty("geoVisionDashboard");
+    }
     public String getUsername() {
         return prop.getProperty("geoVisionUsername");
     }
