@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.DashboardPage;
 import utilities.ConfigReader;
-import utilities.Driver;
 
 public class Dashboard {
 
@@ -27,6 +26,6 @@ public class Dashboard {
     @Step("Click 'Uygulamayı Başlat' button on dashboard")
     public void clickStartAppButton() {
         DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
-        dashboardPage.clickStartAppButton();
+        dashboardPage.clickButton(dashboardPage.startAppButton);
     }
 }

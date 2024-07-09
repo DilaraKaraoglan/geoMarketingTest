@@ -9,6 +9,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import shared.SharedMethods;
 
 import java.time.Duration;
 
@@ -19,15 +20,15 @@ public class MapPage {
 
     @FindBy(how = How.XPATH, using = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiCard-root css-18rp9sd']")
     @CacheLookup
-    private WebElement mapsGrid;
+    public WebElement mapsGrid;
 
     @FindBy(how = How.XPATH, using = "//div[@test-id='left-menu-filter-btn']")
     @CacheLookup
-    private WebElement leftMenuFilterButton;
+    public WebElement leftMenuFilterButton;
 
     @FindBy(how = How.XPATH, using = "//h6[text()='Filtreler']")
     @CacheLookup
-    private WebElement filterButton;
+    public WebElement filterButton;
 
     public MapPage(WebDriver driver) {
         this.driver = driver;
@@ -35,17 +36,13 @@ public class MapPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickMapsGrid() {
-        wait.until(ExpectedConditions.elementToBeClickable(mapsGrid)).click();
+    public void mouseOverButton(WebElement webElement){
+        SharedMethods sharedMethods = PageFactory.initElements(driver, SharedMethods.class);
+        sharedMethods.mouseOverButton(webElement);
     }
 
-    public void mouseOverFilterButton() {
-        Actions actions = new Actions(driver);
-        wait.until(ExpectedConditions.elementToBeClickable(leftMenuFilterButton));
-        actions.clickAndHold(leftMenuFilterButton).perform();
-    }
-
-    public void clickFilterButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(filterButton)).click();
+    public void clickButton(WebElement webElement) {
+        SharedMethods sharedMethods = PageFactory.initElements(driver, SharedMethods.class);
+        sharedMethods.clickButton(webElement);
     }
 }

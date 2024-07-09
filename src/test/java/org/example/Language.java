@@ -26,24 +26,24 @@ public class Language {
     @Step("Click 'TR' button")
     public void clickLanguageButtonFirst() throws InterruptedException {
         LanguagePage languagePage = PageFactory.initElements(driver, LanguagePage.class);
-        languagePage.clickLanguageButtonFirst();
+        languagePage.clickButton(languagePage.languageButtonFirst);
     }
 
     @Step("Change Language to ENG")
     public void changeLanguageToENG() throws InterruptedException {
         LanguagePage languagePage = PageFactory.initElements(driver, LanguagePage.class);
-        languagePage.clickLanguageButtonENG();
+        languagePage.clickButton(languagePage.languageButtonENG);
     }
 
     @Step("Change Language to TR")
     public void changeLanguageToTR() throws InterruptedException {
         LanguagePage languagePage = PageFactory.initElements(driver, LanguagePage.class);
-        languagePage.clickLanguageButtonTR();
+        languagePage.clickButton(languagePage.languageButtonTR);
     }
 
     @Step("Click 'ENG' button")
     public void clickLanguageButtonSecond() throws InterruptedException {
         LanguagePage languagePage = PageFactory.initElements(driver, LanguagePage.class);
-        languagePage.clickLanguageButtonSecond();
+        languagePage.clickButton(languagePage.languageButtonSecond);
     }
 }

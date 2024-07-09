@@ -28,6 +28,9 @@ public class ConfigReader {
     public String getUrlDashborad(){
         return prop.getProperty("geoVisionDashboard");
     }
+    public String getPathForCity(){
+        return prop.getProperty("filePathForCityFile");
+    }
     public String getUsername() {
         return prop.getProperty("geoVisionUsername");
     }

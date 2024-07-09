@@ -25,18 +25,18 @@ public class Maps {
     @Step("Click maps grid")
     public void clickMapsGrid() {
         MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
-        mapPage.clickMapsGrid();
+        mapPage.clickButton(mapPage.mapsGrid);
     }
 
     @Step("Click and hold filter button")
     public void clickAndHoldFilterButton() {
         MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
-        mapPage.mouseOverFilterButton();
+        mapPage.mouseOverButton(mapPage.leftMenuFilterButton);
     }
 
     @Step("Click filter button")
     public void clickFilterButton() {
         MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
-        mapPage.clickFilterButton();
+        mapPage.clickButton(mapPage.filterButton);
     }
 }

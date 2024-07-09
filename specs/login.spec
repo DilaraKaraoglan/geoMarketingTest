@@ -23,11 +23,3 @@
 ## Create and save new filter
 * Click and hold filter button
 * Click filter button
-* Click create filter button
-* Select City
-* Select District
-* Click Radio Button
-* Select criterion and show review
-* Click Transactions Button
-* Click Save Filter Button
-* Personalize the filter button

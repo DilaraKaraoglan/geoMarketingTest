@@ -25,7 +25,7 @@ public class Filter {
     @Step("Click create filter button")
     public void clickCreateFilterButton() {
         FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
-        filterPage.clickCreateFilterButton();
+        filterPage.clickButton(filterPage.createFilterButton);
     }
 
     @Step("Select City")
@@ -50,19 +50,19 @@ public class Filter {
     public void clickCriterionButton() {
         FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
         filterPage.selectCriterion();
-        filterPage.clickPreviewButton();
+        filterPage.clickButton(filterPage.previewButton);
     }
 
     @Step("Click Transactions Button")
     public void clickTransactionsButton() {
         FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
-        filterPage.clickTransactionsButton();
+        filterPage.clickButton(filterPage.transactionsButton);
     }
 
     @Step("Click Save Filter Button")
     public void clickSaveFilterButton() {
         FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
-        filterPage.clickSaveFilterButton();
+        filterPage.clickButton(filterPage.saveFilterButton);
     }
 
     @Step("Personalize the filter button")

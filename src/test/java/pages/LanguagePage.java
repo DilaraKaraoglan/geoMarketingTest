@@ -8,6 +8,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import shared.SharedMethods;
 
 import java.time.Duration;
 
@@ -18,19 +19,19 @@ public class LanguagePage {
 
     @FindBy(how = How.XPATH, using = "//button[text()='Türkçe']")
     @CacheLookup
-    private WebElement languageButtonFirst;
+    public WebElement languageButtonFirst;
 
     @FindBy(how = How.XPATH, using = "//button[text()='English']")
     @CacheLookup
-    private WebElement languageButtonSecond;
+    public WebElement languageButtonSecond;
 
     @FindBy(how = How.XPATH, using = "(//ul[@aria-label='Türkçe']//li[@role='menuitem'])[3]")
     @CacheLookup
-    private WebElement languageButtonENG;
+    public WebElement languageButtonENG;
 
     @FindBy(how = How.XPATH, using = "(//ul[@aria-label='English']//li[@role='menuitem'])[2]")
     @CacheLookup
-    private WebElement languageButtonTR;
+    public WebElement languageButtonTR;
 
     public LanguagePage(WebDriver driver) {
         this.driver = driver;
@@ -38,24 +39,10 @@ public class LanguagePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickLanguageButtonFirst() throws InterruptedException {
-        waitForElementToBeClickable(languageButtonFirst);
-        languageButtonFirst.click();
-    }
-
-    public void clickLanguageButtonSecond() throws InterruptedException {
-        waitForElementToBeClickable(languageButtonSecond);
-        languageButtonSecond.click();
-    }
-
-    public void clickLanguageButtonENG() throws InterruptedException {
-        waitForElementToBeClickable(languageButtonENG);
-        languageButtonENG.click();
-    }
-
-    public void clickLanguageButtonTR() throws InterruptedException {
-        waitForElementToBeClickable(languageButtonTR);
-        languageButtonTR.click();
+    public void clickButton(WebElement webElement) throws InterruptedException {
+        SharedMethods sharedMethods = PageFactory.initElements(driver, SharedMethods.class);
+        waitForElementToBeClickable(webElement);
+        sharedMethods.clickButton(webElement);
     }
 
     private void waitForElementToBeClickable(WebElement element) throws InterruptedException {

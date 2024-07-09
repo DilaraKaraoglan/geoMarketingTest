@@ -10,6 +10,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import shared.SharedMethods;
 
 import java.time.Duration;
 
@@ -20,48 +21,44 @@ public class FilterPage {
 
     @FindBy(how = How.XPATH, using = "//button[@test-id='create-new-filter-btn']")
     @CacheLookup
-    private WebElement createFilterButton;
+    public WebElement createFilterButton;
 
     @FindBy(how = How.XPATH, using = "//input[@id=':r16:']")
     @CacheLookup
-    private WebElement selectCity;
+    public WebElement selectCity;
 
     @FindBy(how = How.XPATH, using = "//input[@id=':r18:']")
     @CacheLookup
-    private WebElement selectDistrict;
+    public WebElement selectDistrict;
 
     @FindBy(how = How.XPATH, using = "//input[@id=':r2d:']")
     @CacheLookup
-    private WebElement selectCriterion;
+    public WebElement selectCriterion;
 
     @FindBy(how = How.XPATH, using = "//button[@id=':r1h:']")
     @CacheLookup
-    private WebElement previewButton;
+    public WebElement previewButton;
 
     @FindBy(how = How.XPATH, using = "//h6[text()='İdari Sınır']")
     @CacheLookup
-    private WebElement pagePath;
+    public WebElement pagePath;
 
     @FindBy(how = How.XPATH, using = "//label[.//span[text()='Konut_2022']]//input[@type='checkbox']")
     @CacheLookup
-    private WebElement radioButton;
+    public WebElement radioButton;
 
     @FindBy(how = How.XPATH, using = "//button[text()='İşlemler']")
     @CacheLookup
-    private WebElement transactionsButton;
+    public WebElement transactionsButton;
 
     @FindBy(how = How.XPATH, using = "//h6[text()='Filtreyi Kaydet']")
     @CacheLookup
-    private WebElement saveFilterButton;
+    public WebElement saveFilterButton;
 
     public FilterPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
-    }
-
-    public void clickCreateFilterButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(createFilterButton)).click();
     }
 
     public void selectCityDropdown() {
@@ -116,18 +113,6 @@ public class FilterPage {
                 .perform();
     }
 
-    public void clickPreviewButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(previewButton)).click();
-    }
-
-    public void clickTransactionsButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(transactionsButton)).click();
-    }
-
-    public void clickSaveFilterButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(saveFilterButton)).click();
-    }
-
     public void personalizeTheFilterButton() {
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.elementToBeClickable(pagePath));
@@ -138,5 +123,9 @@ public class FilterPage {
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.ENTER)
                 .perform();
+    }
+    public void clickButton(WebElement webElement) {
+        SharedMethods sharedMethods = PageFactory.initElements(driver, SharedMethods.class);
+        sharedMethods.clickButton(webElement);
     }
 }

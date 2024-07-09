@@ -8,6 +8,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import shared.SharedMethods;
 
 import java.time.Duration;
 
@@ -18,7 +19,11 @@ public class OnboardingPage {
 
     @FindBy(how = How.XPATH, using = "//button[@aria-label='Haritalar']")
     @CacheLookup
-    WebElement mapButton;
+    public WebElement mapButton;
+
+    @FindBy(how = How.XPATH, using = "//button[@aria-label='Veri Havuzu']")
+    @CacheLookup
+    public WebElement repositoryButton;
 
     public OnboardingPage(WebDriver driver) {
         this.driver = driver;
@@ -26,9 +31,10 @@ public class OnboardingPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickMapButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(mapButton));
-        mapButton.click();
+
+    public void clickButton(WebElement webElement) {
+        SharedMethods sharedMethods = PageFactory.initElements(driver, SharedMethods.class);
+        sharedMethods.clickButton(webElement);
     }
 }
 

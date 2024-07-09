@@ -26,6 +26,12 @@ public class Onboarding {
     @Step("Click map button")
     public void clickMapButton() {
         OnboardingPage onboardingPage = PageFactory.initElements(driver, OnboardingPage.class);
-        onboardingPage.clickMapButton();
+        onboardingPage.clickButton(onboardingPage.mapButton);
+    }
+
+    @Step("Click repository button")
+    public void clickRepositoryButton() {
+        OnboardingPage onboardingPage = PageFactory.initElements(driver, OnboardingPage.class);
+        onboardingPage.clickButton(onboardingPage.repositoryButton);
     }
 }

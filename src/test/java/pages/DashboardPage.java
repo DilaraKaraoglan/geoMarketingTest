@@ -8,6 +8,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import shared.SharedMethods;
 
 import java.time.Duration;
 
@@ -18,7 +19,7 @@ public class DashboardPage {
 
     @FindBy(how = How.XPATH, using = "//a[text()='Uygulamayı Başlat']")
     @CacheLookup
-    private WebElement startAppButton;
+    public WebElement startAppButton;
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
@@ -26,9 +27,9 @@ public class DashboardPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickStartAppButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(startAppButton));
-        startAppButton.click();
+    public void clickButton(WebElement webElement) {
+        SharedMethods sharedMethods = PageFactory.initElements(driver, SharedMethods.class);
+        sharedMethods.clickButton(webElement);
     }
 
     public boolean isStartAppButtonDisplayed() {
