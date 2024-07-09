@@ -8,10 +8,15 @@ import utilities.ConfigReader;
 
 public class Language {
 
+    private ConfigReader configReader;
+    private WebDriver driver;
+    private Login login;
 
-    ConfigReader configReader;
-    WebDriver driver;
-    Login login = new Login();
+    public Language() {
+        this.configReader = new ConfigReader();
+        this.login = new Login();
+        this.driver = login.getDriver();
+    }
 
     @Step("Set up configuration for dashboard")
     public void setUpConfig() {
@@ -19,32 +24,26 @@ public class Language {
     }
 
     @Step("Click 'TR' button")
-    public void clicklanguageButtonFirst() throws InterruptedException {
-        LanguagePage languagePage = PageFactory.initElements(login.getDriver(), LanguagePage.class);
-        Thread.sleep(3000);
+    public void clickLanguageButtonFirst() throws InterruptedException {
+        LanguagePage languagePage = PageFactory.initElements(driver, LanguagePage.class);
         languagePage.clickLanguageButtonFirst();
-        Thread.sleep(2000);
     }
+
     @Step("Change Language to ENG")
-    public void clicklanguageButtonENG() throws InterruptedException {
-        LanguagePage languagePage = PageFactory.initElements(login.getDriver(), LanguagePage.class);
-        Thread.sleep(3000);
+    public void changeLanguageToENG() throws InterruptedException {
+        LanguagePage languagePage = PageFactory.initElements(driver, LanguagePage.class);
         languagePage.clickLanguageButtonENG();
-        Thread.sleep(3000);
     }
+
     @Step("Change Language to TR")
-    public void clicklanguageButtonTR() throws InterruptedException {
-        LanguagePage languagePage = PageFactory.initElements(login.getDriver(), LanguagePage.class);
-        Thread.sleep(3000);
+    public void changeLanguageToTR() throws InterruptedException {
+        LanguagePage languagePage = PageFactory.initElements(driver, LanguagePage.class);
         languagePage.clickLanguageButtonTR();
-        Thread.sleep(3000);
     }
 
     @Step("Click 'ENG' button")
-    public void clicklanguageButtonSecond() throws InterruptedException {
-        LanguagePage languagePage = PageFactory.initElements(login.getDriver(), LanguagePage.class);
-        Thread.sleep(3000);
+    public void clickLanguageButtonSecond() throws InterruptedException {
+        LanguagePage languagePage = PageFactory.initElements(driver, LanguagePage.class);
         languagePage.clickLanguageButtonSecond();
-        Thread.sleep(3000);
     }
 }

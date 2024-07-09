@@ -8,76 +8,78 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.security.Key;
+import java.time.Duration;
 
 public class FilterPage {
 
-    WebDriver driver;
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     @FindBy(how = How.XPATH, using = "//button[@test-id='create-new-filter-btn']")
     @CacheLookup
-    WebElement createFilterButton;
+    private WebElement createFilterButton;
 
     @FindBy(how = How.XPATH, using = "//input[@id=':r16:']")
     @CacheLookup
-    WebElement selectCity;
+    private WebElement selectCity;
 
     @FindBy(how = How.XPATH, using = "//input[@id=':r18:']")
     @CacheLookup
-    WebElement selectDistrict;
+    private WebElement selectDistrict;
 
     @FindBy(how = How.XPATH, using = "//input[@id=':r2d:']")
     @CacheLookup
-    WebElement selectCriterion;
+    private WebElement selectCriterion;
 
     @FindBy(how = How.XPATH, using = "//button[@id=':r1h:']")
     @CacheLookup
-    WebElement previewButton;
+    private WebElement previewButton;
 
     @FindBy(how = How.XPATH, using = "//h6[text()='İdari Sınır']")
     @CacheLookup
-    WebElement pagePath;
+    private WebElement pagePath;
 
     @FindBy(how = How.XPATH, using = "//label[.//span[text()='Konut_2022']]//input[@type='checkbox']")
     @CacheLookup
-    WebElement radioButton;
-
+    private WebElement radioButton;
 
     @FindBy(how = How.XPATH, using = "//button[text()='İşlemler']")
     @CacheLookup
-    WebElement transactionsButton;
+    private WebElement transactionsButton;
 
     @FindBy(how = How.XPATH, using = "//h6[text()='Filtreyi Kaydet']")
     @CacheLookup
-    WebElement saveFilterButton;
-
-
+    private WebElement saveFilterButton;
 
     public FilterPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 
     public void clickCreateFilterButton() {
-        createFilterButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(createFilterButton)).click();
     }
-    public  void selectCityDropdown(){
+
+    public void selectCityDropdown() {
         Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.elementToBeClickable(selectCity));
         actions.click(selectCity)
                 .sendKeys("ist")
-                .keyDown(Keys.DOWN)
-                .keyUp(Keys.DOWN)
+                .sendKeys(Keys.DOWN)
                 .sendKeys(Keys.ENTER)
                 .perform();
     }
 
-    public  void selectDistrictDropdown(){
+    public void selectDistrictDropdown() {
         Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.elementToBeClickable(selectDistrict));
         actions.click(selectDistrict)
                 .sendKeys("kad")
-                .keyDown(Keys.DOWN)
-                .keyUp(Keys.DOWN)
+                .sendKeys(Keys.DOWN)
                 .sendKeys(Keys.ENTER)
                 .perform();
     }
@@ -101,38 +103,34 @@ public class FilterPage {
         actions.moveToElement(radioButton).click().perform();
     }
 
-    public void selectCriterion(){
+
+    public void selectCriterion() {
         Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.elementToBeClickable(selectCriterion));
         actions.click(selectCriterion)
                 .sendKeys("büyükt")
-                .keyDown(Keys.DOWN)
-                .keyUp(Keys.DOWN)
+                .sendKeys(Keys.DOWN)
                 .sendKeys(Keys.ENTER)
                 .sendKeys(Keys.TAB)
                 .sendKeys("20000")
                 .perform();
     }
 
-    public void clickPreviewButton(){
-        Actions actions  =  new Actions(driver);
-        actions.click(previewButton)
-                .perform();
+    public void clickPreviewButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(previewButton)).click();
     }
 
-    public void clickTransactionsButton(){
-        Actions actions  =  new Actions(driver);
-        actions.click(transactionsButton)
-                .perform();
+    public void clickTransactionsButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(transactionsButton)).click();
     }
 
-    public void clickSaveFilterButton(){
-        Actions actions  =  new Actions(driver);
-        actions.click(saveFilterButton)
-                .perform();
+    public void clickSaveFilterButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(saveFilterButton)).click();
     }
 
-    public void personalizeTheFilterButton(){
-        Actions actions  =  new Actions(driver);
+    public void personalizeTheFilterButton() {
+        Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.elementToBeClickable(pagePath));
         actions.sendKeys("thirdFilter")
                 .sendKeys(Keys.TAB)
                 .sendKeys("#EAF251")
@@ -141,6 +139,4 @@ public class FilterPage {
                 .sendKeys(Keys.ENTER)
                 .perform();
     }
-
-
 }

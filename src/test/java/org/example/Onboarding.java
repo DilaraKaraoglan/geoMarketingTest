@@ -5,23 +5,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.OnboardingPage;
 import utilities.ConfigReader;
+import utilities.Driver;
 
 public class Onboarding {
-    ConfigReader configReader;
-    WebDriver driver;
-    Login login = new Login();
+    private ConfigReader configReader;
+    private WebDriver driver;
+    private Login login;
 
-    @Step("Set up configuration for dashboard")
+    public Onboarding() {
+        this.login = new Login();
+        this.configReader = new ConfigReader();
+        this.driver = login.getDriver();
+    }
+
+    @Step("Set up configuration for onboarding")
     public void setUpConfig() {
         configReader = new ConfigReader();
     }
 
     @Step("Click map button")
-    public void clickMapButton() throws InterruptedException {
-        OnboardingPage onboardingPage = PageFactory.initElements(login.getDriver(), OnboardingPage.class);
-        Thread.sleep(3000);
+    public void clickMapButton() {
+        OnboardingPage onboardingPage = PageFactory.initElements(driver, OnboardingPage.class);
         onboardingPage.clickMapButton();
-        Thread.sleep(3000);
     }
-
 }

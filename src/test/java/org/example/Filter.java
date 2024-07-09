@@ -4,83 +4,70 @@ import com.thoughtworks.gauge.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.FilterPage;
-import pages.MapPage;
 import utilities.ConfigReader;
 
 public class Filter {
-    ConfigReader configReader;
-    WebDriver driver;
-    Login login = new Login();
+    private ConfigReader configReader;
+    private WebDriver driver;
+    private Login login;
 
-    @Step("Set up configuration for dashboard")
+    public Filter() {
+        this.login = new Login();
+        this.configReader = new ConfigReader();
+        this.driver = login.getDriver();
+    }
+
+    @Step("Set up configuration for filter")
     public void setUpConfig() {
         configReader = new ConfigReader();
     }
 
-
-
     @Step("Click create filter button")
-    public void clickCreateFilterButton() throws InterruptedException{
-        FilterPage filterPage = PageFactory.initElements(login.getDriver(),FilterPage.class);
-        Thread.sleep(3000);
+    public void clickCreateFilterButton() {
+        FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
         filterPage.clickCreateFilterButton();
-        Thread.sleep(3000);
     }
 
     @Step("Select City")
-    public void selectCity() throws InterruptedException{
-        FilterPage filterPage = PageFactory.initElements(login.getDriver(),FilterPage.class);
-        Thread.sleep(3000);
+    public void selectCity() {
+        FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
         filterPage.selectCityDropdown();
-        Thread.sleep(3000);
     }
 
     @Step("Select District")
-    public void selectDistrict() throws InterruptedException{
-        FilterPage filterPage = PageFactory.initElements(login.getDriver(),FilterPage.class);
-        Thread.sleep(3000);
+    public void selectDistrict() {
+        FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
         filterPage.selectDistrictDropdown();
-        Thread.sleep(3000);
     }
 
     @Step("Click Radio Button")
-    public void clickRadioButton() throws InterruptedException{
-        FilterPage filterPage = PageFactory.initElements(login.getDriver(),FilterPage.class);
-        Thread.sleep(3000);
+    public void clickRadioButton() {
+        FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
         filterPage.clickRadioButton();
-        Thread.sleep(3000);
     }
-    @Step("Select criterion and show review")
-    public void clickCriterionButton() throws InterruptedException{
-        FilterPage filterPage = PageFactory.initElements(login.getDriver(),FilterPage.class);
-        Thread.sleep(3000);
-        filterPage.selectCriterion();
-        Thread.sleep(3000);
-        filterPage.clickPreviewButton();
-        Thread.sleep(2000);
 
+    @Step("Select criterion and show review")
+    public void clickCriterionButton() {
+        FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
+        filterPage.selectCriterion();
+        filterPage.clickPreviewButton();
     }
+
     @Step("Click Transactions Button")
-    public void clickTransactionsButton() throws InterruptedException{
-        FilterPage filterPage = PageFactory.initElements(login.getDriver(),FilterPage.class);
-        Thread.sleep(3000);
+    public void clickTransactionsButton() {
+        FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
         filterPage.clickTransactionsButton();
-        Thread.sleep(3000);
     }
 
     @Step("Click Save Filter Button")
-    public void clickSaveFilterButton() throws InterruptedException{
-        FilterPage filterPage = PageFactory.initElements(login.getDriver(),FilterPage.class);
-        Thread.sleep(3000);
+    public void clickSaveFilterButton() {
+        FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
         filterPage.clickSaveFilterButton();
-        Thread.sleep(3000);
     }
 
     @Step("Personalize the filter button")
-    public void personalizeTheFilterButton() throws InterruptedException{
-        FilterPage filterPage = PageFactory.initElements(login.getDriver(),FilterPage.class);
-        Thread.sleep(3000);
+    public void personalizeTheFilterButton() {
+        FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
         filterPage.personalizeTheFilterButton();
-        Thread.sleep(3000);
     }
 }

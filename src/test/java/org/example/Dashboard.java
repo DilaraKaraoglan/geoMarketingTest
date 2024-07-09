@@ -5,23 +5,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.DashboardPage;
 import utilities.ConfigReader;
+import utilities.Driver;
 
 public class Dashboard {
 
-    ConfigReader configReader;
-    WebDriver driver;
-    Login login = new Login();
+    private ConfigReader configReader;
+    private WebDriver driver;
+    private Login login;
+
+    public Dashboard() {
+        this.login = new Login();
+        this.configReader = new ConfigReader();
+        this.driver = login.getDriver();
+    }
 
     @Step("Set up configuration for dashboard")
     public void setUpConfig() {
         configReader = new ConfigReader();
     }
 
-    @Step("Click 'Uygulamayı Başlat' button dashboard")
-    public void clickStartAppButton() throws InterruptedException {
-        DashboardPage dashboardPage = PageFactory.initElements(login.getDriver(), DashboardPage.class);
-        Thread.sleep(3000);
+    @Step("Click 'Uygulamayı Başlat' button on dashboard")
+    public void clickStartAppButton() {
+        DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
         dashboardPage.clickStartAppButton();
-        Thread.sleep(2000);
     }
 }
