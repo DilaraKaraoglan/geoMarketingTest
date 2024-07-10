@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.security.Key;
 import java.time.Duration;
 
 public class RepositoryPage {
@@ -28,7 +29,7 @@ public class RepositoryPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(how = How.XPATH, using = "//h6[text()='Mey']")
+    @FindBy(how = How.XPATH, using = "//h6[@class='MuiTypography-root MuiTypography-subtitle2 css-1cpg3ij']")
     @CacheLookup
     public WebElement dataset;
 
@@ -56,6 +57,13 @@ public class RepositoryPage {
     @CacheLookup
     public WebElement surveyDataButton;
 
+    @FindBy(how = How.XPATH, using = "//p[text()='Kolonları Seçin']/parent::div/div[@class='MuiStack-root css-1b0zbwx']")
+    @CacheLookup
+    public WebElement selectColons;
+
+    @FindBy(how = How.XPATH, using = "//option[text()='ID Kolonunu Seçiniz']")
+    @CacheLookup
+    public WebElement selectIDColon;
 
     public void clickButton(WebElement webElement) {
         SharedMethods sharedMethods = PageFactory.initElements(driver, SharedMethods.class);
@@ -93,6 +101,51 @@ public class RepositoryPage {
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
+    }
+
+    public void selectColonsForCity(String idColon, String aliasColon, String displayname){
+        Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.visibilityOf(selectColons));
+        actions.click(selectIDColon)
+                .sendKeys(idColon)
+                .sendKeys(Keys.TAB)
+                .sendKeys(aliasColon)
+                .sendKeys(displayname)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER)
+                .perform();
+    }
+
+    public void selectColonsForDistrict(String idColon, String aliasColon, String displayname, String parent){
+        Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.visibilityOf(selectColons));
+        actions.click(selectIDColon)
+                .sendKeys(idColon)
+                .sendKeys(Keys.TAB)
+                .sendKeys(parent)
+                .sendKeys(Keys.TAB)
+                .sendKeys(aliasColon)
+                .sendKeys(Keys.TAB)
+                .sendKeys(displayname)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER)
+                .perform();
+    }
+
+    public void selectColonsForIlce(){
+        Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.visibilityOf(selectColons));
+        actions.click(selectIDColon)
+                .sendKeys("PLA")
+                .sendKeys(Keys.TAB)
+                .sendKeys("IL")
+                .sendKeys("il_region")
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.TAB)
+                .sendKeys(Keys.ENTER)
+                .perform();
     }
 
 

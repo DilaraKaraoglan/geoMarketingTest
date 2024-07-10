@@ -22,6 +22,10 @@ public class MapPage {
     @CacheLookup
     public WebElement mapsGrid;
 
+    @FindBy(how = How.XPATH, using = "//div[@test-id='left-menu-layers-btn']")
+    @CacheLookup
+    public WebElement leftMenuLayersButton;
+
     @FindBy(how = How.XPATH, using = "//div[@test-id='left-menu-filter-btn']")
     @CacheLookup
     public WebElement leftMenuFilterButton;
@@ -29,6 +33,22 @@ public class MapPage {
     @FindBy(how = How.XPATH, using = "//h6[text()='Filtreler']")
     @CacheLookup
     public WebElement filterButton;
+
+    @FindBy(how = How.XPATH, using = "//h6[text()='Katman Kontrolü']")
+    @CacheLookup
+    public WebElement layersButton;
+
+    @FindBy(how = How.XPATH, using = "//h6[text()='IL' ]")
+    @CacheLookup
+    public WebElement layerTextIL;
+
+    @FindBy(how = How.XPATH, using = "//h6[text()='ILCE' ]")
+    @CacheLookup
+    public WebElement layerTextILCE;
+
+    @FindBy(how = How.XPATH, using = "//h6[text()='MAHALLE' ]")
+    @CacheLookup
+    public WebElement layerTextMAHALLE;
 
     public MapPage(WebDriver driver) {
         this.driver = driver;
@@ -44,5 +64,10 @@ public class MapPage {
     public void clickButton(WebElement webElement) {
         SharedMethods sharedMethods = PageFactory.initElements(driver, SharedMethods.class);
         sharedMethods.clickButton(webElement);
+    }
+
+    public void verifyDisplayed(WebElement webElement){
+        SharedMethods sharedMethods = PageFactory.initElements(driver, SharedMethods.class);
+        sharedMethods.verifyDisplayedWithRetry(webElement,layersButton,leftMenuLayersButton, 5, Duration.ofSeconds(2));
     }
 }

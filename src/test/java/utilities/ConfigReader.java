@@ -28,13 +28,56 @@ public class ConfigReader {
     public String getUrlDashborad(){
         return prop.getProperty("geoVisionDashboard");
     }
-    public String getPathForCity(){
-        return prop.getProperty("filePathForCityFile");
-    }
     public String getUsername() {
         return prop.getProperty("geoVisionUsername");
     }
     public String getPassword() {
         return prop.getProperty("geoVisionPassword");
+    }
+    public String getDataSetAliasNameIL() {
+        return prop.getProperty("dataSetAliasNameIL");
+    }
+    public String getDataSetDisplayNameIL() {
+        return prop.getProperty("dataSetDisplayNameIL");
+    }
+    public String getDataSetIdIL() {
+        return prop.getProperty("dataSetIdIL");
+    }
+    public String getDataPathIL() {
+        return prop.getProperty("dataPathIL");
+    }
+
+
+    public String getDataSetAliasNameILCE() {
+        return prop.getProperty("dataSetAliasNameILCE");
+    }
+    public String getDataSetDisplayNameILCE() {
+        return prop.getProperty("dataSetDisplayNameILCE");
+    }
+    public String getDataSetIdILCE() {
+        return prop.getProperty("dataSetIdILCE");
+    }
+    public String getParentColumnILCE() {
+        return prop.getProperty("parentColumnILCE");
+    }
+    public String getDataPathILCE() {
+        return prop.getProperty("dataPathILCE");
+    }
+
+
+    public String getDataSetAliasNameMah() {
+        return prop.getProperty("dataSetAliasNameMah");
+    }
+    public String getDataSetDisplayNameMah() {
+        return prop.getProperty("dataSetDisplayNameMah");
+    }
+    public String getDataSetIdMah() {
+        return prop.getProperty("dataSetIdMah");
+    }
+    public String getParentColumnMah() {
+        return prop.getProperty("parentColumnMah");
+    }
+    public String getDataPathMah() {
+        return prop.getProperty("dataPathMah");
     }
 }

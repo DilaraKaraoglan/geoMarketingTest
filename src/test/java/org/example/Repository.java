@@ -42,18 +42,33 @@ public class Repository {
         RepositoryPage repositoryPage = PageFactory.initElements(driver, RepositoryPage.class);
         repositoryPage.clickButton(repositoryPage.administratorAreaGrid);
     }
-    @Step("Select file uploud button")
-    public void selectFileForUploudButton() throws InterruptedException, AWTException {
-        String filePath = configReader.getPathForCity(); // Assuming this returns the correct file path
+    @Step("Select file uploud for city")
+    public void selectFileForUploudCityButton() throws InterruptedException, AWTException {
+        String filePath = configReader.getDataPathIL(); // Assuming this returns the correct file path
+        RepositoryPage repositoryPage = PageFactory.initElements(driver, RepositoryPage.class);
+        repositoryPage.clickFileUploudButton(filePath);
+        System.out.println(filePath);
+    }
+    @Step("Select file uploud for district")
+    public void selectFileForUploudDistrictButton() throws InterruptedException, AWTException {
+        String filePath = configReader.getDataPathILCE(); // Assuming this returns the correct file path
+        RepositoryPage repositoryPage = PageFactory.initElements(driver, RepositoryPage.class);
+        repositoryPage.clickFileUploudButton(filePath);
+        System.out.println(filePath);
+    }
+    @Step("Select file uploud for neighbourhood")
+    public void selectFileForUploudNeighbourhoodButton() throws InterruptedException, AWTException {
+        String filePath = configReader.getDataPathMah(); // Assuming this returns the correct file path
         RepositoryPage repositoryPage = PageFactory.initElements(driver, RepositoryPage.class);
         repositoryPage.clickFileUploudButton(filePath);
         System.out.println(filePath);
     }
 
     @Step("Click continue button")
-    public void clickContinueButton() {
+    public void clickContinueButton() throws InterruptedException {
         RepositoryPage repositoryPage = PageFactory.initElements(driver, RepositoryPage.class);
         repositoryPage.clickButton(repositoryPage.continueButton);
+        Thread.sleep(5000);
     }
 
     @Step("Click survey data button")
@@ -62,6 +77,25 @@ public class Repository {
         repositoryPage.clickButton(repositoryPage.surveyDataButton);
     }
 
+    @Step("Select colons for city")
+    public void selectColonsForCity() throws InterruptedException {
+        Thread.sleep(3000);
+        RepositoryPage repositoryPage = PageFactory.initElements(driver, RepositoryPage.class);
+        repositoryPage.selectColonsForCity(configReader.getDataSetIdIL(),configReader.getDataSetAliasNameIL(),configReader.getDataSetDisplayNameIL());
+    }
+    @Step("Select colons for district")
+    public void selectColonsForDistrict() throws InterruptedException {
+        Thread.sleep(3000);
+        RepositoryPage repositoryPage = PageFactory.initElements(driver, RepositoryPage.class);
+        repositoryPage.selectColonsForDistrict(configReader.getDataSetIdILCE(),configReader.getDataSetAliasNameILCE(),configReader.getDataSetDisplayNameILCE(), configReader.getParentColumnILCE());
+    }
+
+    @Step("Select colons for neighbourhood")
+    public void selectColonsForNeighbourhood() throws InterruptedException {
+        Thread.sleep(3000);
+        RepositoryPage repositoryPage = PageFactory.initElements(driver, RepositoryPage.class);
+        repositoryPage.selectColonsForDistrict(configReader.getDataSetIdMah(),configReader.getDataSetAliasNameMah(),configReader.getDataSetDisplayNameMah(), configReader.getParentColumnMah());
+    }
 
 
 }

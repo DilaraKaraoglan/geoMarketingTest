@@ -1,5 +1,7 @@
 package shared;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -8,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.junit.Assert.assertTrue;
 
 public class SharedMethods {
     private WebDriver driver;
@@ -27,5 +31,28 @@ public class SharedMethods {
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
         actions.clickAndHold(webElement).perform();
+    }
+
+    public void verifyDisplayedWithRetry(WebElement webElement,WebElement layerButton , WebElement leftMenuLayer, int maxRetries, Duration retryInterval) {
+        for (int i = 0; i < maxRetries; i++) {
+            try {
+                wait.until(ExpectedConditions.visibilityOf(webElement));
+                if (webElement.isDisplayed()) {
+                    System.out.println("Text is displayed: " + webElement.getText() + " " + webElement.isDisplayed());
+                    return;
+                }
+            } catch (NoSuchElementException | org.openqa.selenium.TimeoutException e) {
+                driver.navigate().refresh();
+                mouseOverButton(leftMenuLayer);
+                clickButton(layerButton);
+                try {
+                    Thread.sleep(retryInterval.toMillis());
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+
+        assertTrue("Element is not displayed after retries: " + webElement.toString(), webElement.isDisplayed());
     }
 }
