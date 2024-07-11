@@ -28,6 +28,9 @@ public class ConfigReader {
     public String getUrlDashborad(){
         return prop.getProperty("geoVisionDashboard");
     }
+    public  String getBrowser(){
+        return prop.getProperty("browser");
+    }
     public String getUsername() {
         return prop.getProperty("geoVisionUsername");
     }
@@ -80,4 +83,5 @@ public class ConfigReader {
     public String getDataPathMah() {
         return prop.getProperty("dataPathMah");
     }
+
 }

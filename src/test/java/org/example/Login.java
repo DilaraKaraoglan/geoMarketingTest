@@ -13,6 +13,7 @@ public class Login {
 
     @Step("Set up configuration")
     public void setUpConfig() {
+        System.out.println("configuration is done");
         configReader = new ConfigReader();
     }
 

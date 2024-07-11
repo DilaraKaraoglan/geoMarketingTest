@@ -1,23 +1,20 @@
 package pages;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import shared.SharedMethods;
-
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.security.Key;
 import java.time.Duration;
+import java.util.List;
 
 public class RepositoryPage {
     private WebDriver driver;
@@ -25,7 +22,7 @@ public class RepositoryPage {
 
     public RepositoryPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         PageFactory.initElements(driver, this);
     }
 
@@ -61,7 +58,7 @@ public class RepositoryPage {
     @CacheLookup
     public WebElement selectColons;
 
-    @FindBy(how = How.XPATH, using = "//option[text()='ID Kolonunu Seçiniz']")
+    @FindBy(how = How.XPATH, using = "(//select[@aria-invalid='false'])[1]")
     @CacheLookup
     public WebElement selectIDColon;
 
@@ -103,13 +100,17 @@ public class RepositoryPage {
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
 
+
+
     public void selectColonsForCity(String idColon, String aliasColon, String displayname){
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.visibilityOf(selectColons));
         actions.click(selectIDColon)
                 .sendKeys(idColon)
+                .sendKeys(Keys.ENTER)
                 .sendKeys(Keys.TAB)
                 .sendKeys(aliasColon)
+                .sendKeys(Keys.TAB)
                 .sendKeys(displayname)
                 .sendKeys(Keys.TAB)
                 .sendKeys(Keys.TAB)
@@ -122,6 +123,7 @@ public class RepositoryPage {
         wait.until(ExpectedConditions.visibilityOf(selectColons));
         actions.click(selectIDColon)
                 .sendKeys(idColon)
+                .sendKeys(Keys.ENTER)
                 .sendKeys(Keys.TAB)
                 .sendKeys(parent)
                 .sendKeys(Keys.TAB)

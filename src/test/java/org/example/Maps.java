@@ -42,6 +42,16 @@ public class Maps {
         mapPage.mouseOverButton(mapPage.leftMenuLayersButton);
     }
 
+    @Step("refresh")
+    public void refresh(){
+        driver.navigate().refresh();
+
+    }
+    @Step("turn onboarding")
+    public void turnOnboarding(){
+        MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
+        mapPage.clickButton(mapPage.menuElement);
+    }
     @Step("Click filter button")
     public void clickFilterButton() {
         MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
@@ -55,8 +65,19 @@ public class Maps {
     }
 
     @Step("Display IL")
-    public void displayIL() {
+    public void displayIL() throws InterruptedException {
         MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
         mapPage.verifyDisplayed(mapPage.layerTextIL);
+    }
+    @Step("Display ILCE")
+    public void displayILCE() throws InterruptedException {
+        MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
+        mapPage.verifyDisplayed(mapPage.layerTextILCE);
+    }
+
+    @Step("Display Mahalle")
+    public void displayMahalle() throws InterruptedException {
+        MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
+        mapPage.verifyDisplayed(mapPage.layerTextMAHALLE);
     }
 }

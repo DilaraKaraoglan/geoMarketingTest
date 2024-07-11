@@ -70,4 +70,9 @@ public class Filter {
         FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
         filterPage.personalizeTheFilterButton();
     }
+    @Step("Click Criterian Button")
+    public void clickCriterianButton() {
+        FilterPage filterPage = PageFactory.initElements(driver, FilterPage.class);
+        filterPage.clickButton(filterPage.criterianButton);
+    }
 }

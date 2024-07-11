@@ -39,11 +39,11 @@ public class FilterPage {
     @CacheLookup
     public WebElement previewButton;
 
-    @FindBy(how = How.XPATH, using = "//h6[text()='İdari Sınır']")
+        @FindBy(how = How.XPATH, using = "//h6[text()='Haritasız İlişkili Sözel Veri']")
     @CacheLookup
     public WebElement pagePath;
 
-    @FindBy(how = How.XPATH, using = "//label[.//span[text()='Konut_2022']]//input[@type='checkbox']")
+    @FindBy(how = How.XPATH, using = "//span[text()='Konut_2022']")
     @CacheLookup
     public WebElement radioButton;
 
@@ -54,6 +54,11 @@ public class FilterPage {
     @FindBy(how = How.XPATH, using = "//h6[text()='Filtreyi Kaydet']")
     @CacheLookup
     public WebElement saveFilterButton;
+
+
+    @FindBy(how = How.XPATH, using = "//button[@aria-label='Haritasız İlişkili Sözel Veri']")
+    @CacheLookup
+    public WebElement criterianButton;
 
     public FilterPage(WebDriver driver) {
         this.driver = driver;
@@ -96,9 +101,13 @@ public class FilterPage {
             Thread.currentThread().interrupt(); // Restore interrupted status
         }
 
-        // Click the radio button
+        // Explicit wait for the radio button to be present and clickable
+        wait.until(ExpectedConditions.elementToBeClickable(radioButton));
+
+        // Move to the element and click
         actions.moveToElement(radioButton).click().perform();
     }
+
 
 
     public void selectCriterion() {

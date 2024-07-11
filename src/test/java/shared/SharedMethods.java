@@ -1,9 +1,6 @@
 package shared;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,7 +30,7 @@ public class SharedMethods {
         actions.clickAndHold(webElement).perform();
     }
 
-    public void verifyDisplayedWithRetry(WebElement webElement,WebElement layerButton , WebElement leftMenuLayer, int maxRetries, Duration retryInterval) {
+    public void verifyDisplayedWithRetry(WebElement webElement,WebElement layerButton , WebElement leftMenuLayer, int maxRetries, Duration retryInterval) throws InterruptedException {
         for (int i = 0; i < maxRetries; i++) {
             try {
                 wait.until(ExpectedConditions.visibilityOf(webElement));
@@ -41,9 +38,11 @@ public class SharedMethods {
                     System.out.println("Text is displayed: " + webElement.getText() + " " + webElement.isDisplayed());
                     return;
                 }
-            } catch (NoSuchElementException | org.openqa.selenium.TimeoutException e) {
+            } catch (NoSuchElementException | TimeoutException e) {
                 driver.navigate().refresh();
+                Thread.sleep(1000);
                 mouseOverButton(leftMenuLayer);
+                Thread.sleep(1000);
                 clickButton(layerButton);
                 try {
                     Thread.sleep(retryInterval.toMillis());

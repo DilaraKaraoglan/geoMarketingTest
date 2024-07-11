@@ -17,9 +17,10 @@ public class DashboardPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(how = How.XPATH, using = "//a[text()='Uygulamayı Başlat']")
+    @FindBy(how = How.XPATH, using = "//a[@href='/geomarketing']")
     @CacheLookup
     public WebElement startAppButton;
+
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
