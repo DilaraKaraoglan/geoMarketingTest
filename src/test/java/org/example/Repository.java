@@ -68,7 +68,7 @@ public class Repository {
     public void clickContinueButton() throws InterruptedException {
         RepositoryPage repositoryPage = PageFactory.initElements(driver, RepositoryPage.class);
         repositoryPage.clickButton(repositoryPage.continueButton);
-        Thread.sleep(5000);
+        Thread.sleep(10000);
     }
 
     @Step("Click survey data button")

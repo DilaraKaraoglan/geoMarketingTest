@@ -17,6 +17,13 @@
 * Click dataset button
 * Click Administrator Area button
 * Select file uploud for city
+* Click continue button
+* refresh
+* Click repository button
+* Click dataset button
+* Click Administrator Area button
+* Select file uploud for city
+* Click continue button
 
 ## check city file
 * Click map button
@@ -32,6 +39,13 @@
 * Select file uploud for district
 * Click continue button
 * Select colons for district
+
+## check district file
+* Click map button
+* Click maps grid
+* Click and hold layers button
+* Click layers button
+* Display ILCE
 
 ##Open repository and uploud neighbourhood file
 * Click repository button
