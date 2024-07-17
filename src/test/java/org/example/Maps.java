@@ -65,7 +65,7 @@ public class Maps {
     }
 
     @Step("Display IL")
-    public void displayIL() {
+    public void displayIL() throws InterruptedException {
         MapPage mapPage = PageFactory.initElements(driver, MapPage.class);
         mapPage.verifyDisplayed(mapPage.layerTextIL);
     }
