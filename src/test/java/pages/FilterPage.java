@@ -23,27 +23,28 @@ public class FilterPage {
     @CacheLookup
     public WebElement createFilterButton;
 
-    @FindBy(how = How.XPATH, using = "//input[@id=':r16:']")
+    @FindBy(how = How.XPATH, using = "//input[@id=':r18:']")
     @CacheLookup
     public WebElement selectCity;
 
-    @FindBy(how = How.XPATH, using = "//input[@id=':r18:']")
+    @FindBy(how = How.XPATH, using = "//input[@id=':r1a:']")
     @CacheLookup
     public WebElement selectDistrict;
 
-    @FindBy(how = How.XPATH, using = "//input[@id=':r2d:']")
+    @FindBy(how = How.XPATH, using = "//input[@id=':r24:']")
     @CacheLookup
     public WebElement selectCriterion;
 
-    @FindBy(how = How.XPATH, using = "//button[@id=':r1h:']")
+    @FindBy(how = How.XPATH, using = "//button[@id=':r1i:']")
     @CacheLookup
     public WebElement previewButton;
 
-        @FindBy(how = How.XPATH, using = "//h6[text()='Haritasız İlişkili Sözel Veri']")
+    @FindBy(how = How.XPATH, using = "//h6[text()='Filtreyi kaydetmeden kişiselleştirin!']")
     @CacheLookup
     public WebElement pagePath;
 
-    @FindBy(how = How.XPATH, using = "//span[text()='Konut_2022']")
+
+    @FindBy(how = How.XPATH, using = "//span[text()='KONUT_2022']")
     @CacheLookup
     public WebElement radioButton;
 
@@ -59,6 +60,10 @@ public class FilterPage {
     @FindBy(how = How.XPATH, using = "//button[@aria-label='Haritasız İlişkili Sözel Veri']")
     @CacheLookup
     public WebElement criterianButton;
+
+    @FindBy(how = How.XPATH, using = "//input[@id=':r2c:']")
+    @CacheLookup
+    public WebElement filterName;
 
     public FilterPage(WebDriver driver) {
         this.driver = driver;
@@ -90,7 +95,7 @@ public class FilterPage {
         Actions actions = new Actions(driver);
 
         // Scroll down a bit and then scroll up a little
-        actions.sendKeys(pagePath, Keys.PAGE_DOWN)
+        actions.sendKeys(Keys.PAGE_DOWN)
                 .sendKeys(Keys.ARROW_UP, Keys.ARROW_UP, Keys.ARROW_UP, Keys.ARROW_UP)
                 .perform();
 
@@ -125,7 +130,8 @@ public class FilterPage {
     public void personalizeTheFilterButton() {
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.elementToBeClickable(pagePath));
-        actions.sendKeys("thirdFilter")
+        actions.click(filterName)
+                .sendKeys("thirdFilter")
                 .sendKeys(Keys.TAB)
                 .sendKeys("#EAF251")
                 .sendKeys(Keys.TAB)
