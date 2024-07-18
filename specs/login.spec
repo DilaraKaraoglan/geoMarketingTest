@@ -83,3 +83,7 @@
 * Select District
 * Click Criterian Button
 * Click Radio Button
+* Select criterion and show review
+* Click Transactions Button
+* Click Save Filter Button
+* Personalize the filter button
